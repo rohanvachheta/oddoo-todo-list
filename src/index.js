@@ -83,7 +83,7 @@ function App() {
 
     const fetchAllUser = async () => {
         try {
-            const response = await fetch('http://localhost:5000/users', {
+            const response = await fetch(' https://todobackend-2ax2.onrender.com/users', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`,
@@ -107,7 +107,7 @@ function App() {
 
     const fetchCurrentUser = async () => {
         try {
-            const response = await fetch('http://localhost:5000/users/current', {
+            const response = await fetch(' https://todobackend-2ax2.onrender.com/users/current', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`,
@@ -132,7 +132,7 @@ function App() {
 
     const fetchTodos = async () => {
         try {
-            const response = await fetch('http://localhost:5000/todos', {
+            const response = await fetch(' https://todobackend-2ax2.onrender.com/todos', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`,
@@ -164,16 +164,12 @@ function App() {
 
     useEffect(() => {
         if (currentUser.id) {
-            //   var socket = window.io.connect("http://localhost:5000");
 
-            //   socket.on("connection", function (data) {
-            //     console.log("data");
-            //     // Respond with a message including this clients' id sent from the server
-            //   });
+            var socket = window.io.connect(`wss://todobackend-2ax2.onrender.com?userId=${currentUser.id}`);
 
-            //   socket.emit("connection",{
-            //     userId:123
-            //   });
+            socket.on("get_todo_list", (arg) => {
+                console.log(arg); // world
+            });
         }
     }, [currentUser.id])
 
