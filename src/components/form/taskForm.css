@@ -1,0 +1,76 @@
+/* src/TaskForm.css */
+.task-form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .task-form-header,
+  .task-form-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .task-form-header .btn,
+  .task-form-footer .btn {
+    padding: 10px 20px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .task-form-header .btn.btn-danger {
+    background: #dc3545;
+  }
+  
+  .task-form-header .btn:hover,
+  .task-form-footer .btn:hover {
+    background: #0056b3;
+  }
+  
+  .task-form-footer .btn:hover {
+    background: #0056b3;
+  }
+  
+  .task-form-header .btn.btn-danger:hover {
+    background: #c82333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input[type='text'],
+  .form-group input[type='datetime-local'],
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .form-group label input[type='radio'],
+  .form-group label input[type='checkbox'] {
+    margin-right: 5px;
+  }
+  
+
+  .task-form-footer{
+    flex-direction: row-reverse;
+  }

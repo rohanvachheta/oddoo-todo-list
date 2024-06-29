@@ -1,0 +1,42 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+
+
+  *{
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+  
+
+
+  
+  .react-kanban-card__title {
+    font-size: large;
+    text-decoration: underline;
+    font-style: italic;
+  }
+  
+  .react-kanban-card--dragging {
+    /* transform: rotate(90deg); */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+
+  .react-kanban-card:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all 0.2s;
+  }
+
+  .react-kanban-card{
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .board-root{
+    
+    display: flex;
+    justify-content: center;
+  }
