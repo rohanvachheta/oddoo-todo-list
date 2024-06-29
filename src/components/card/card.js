@@ -22,9 +22,7 @@ const Card = ({ title, dueDate, tasksCompleted, tasksTotal, status, avatar, onCl
             </div>
             <div className="card-body">
                 {dueDate && <span className="due-date">{dueDate}</span>}
-                <div className="task-progress">
-                    <span>{`${tasksCompleted}/${tasksTotal}`}</span>
-                </div>
+               
             </div>
             <div className="card-footer">
                 <span className="status">{status}</span>

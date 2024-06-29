@@ -123,7 +123,7 @@ const TaskForm = ({ closeModal, taskId, assignees,taskDetails }) => {
       >
         <div className="task-form">
           <div className="task-form-header">
-           {taskDetails.id&& <button className="btn btn-danger" onClick={handleDelete}>Delete Todo</button>}
+           {/* {taskDetails.id&& <button className="btn btn-danger" onClick={handleDelete}>Delete Todo</button>} */}
             <button className="btn" onClick={closeModal}>Close</button>
           </div>
           <form>
@@ -200,7 +200,7 @@ const TaskForm = ({ closeModal, taskId, assignees,taskDetails }) => {
             <div className="form-group">
               <label>Assign the following Users</label>
               <div>
-                {assignees.map((item) => (
+                {/* {assignees.map((item) => (
                   <label key={item}>
                     <input
                       type="checkbox"
@@ -223,7 +223,7 @@ const TaskForm = ({ closeModal, taskId, assignees,taskDetails }) => {
                     />
                     {item}
                   </label>
-                ))}
+                ))} */}
               </div>
               {errors.therapists && <p className="error" style={{ color: 'red' }}>{errors.therapists}</p>}
             </div>

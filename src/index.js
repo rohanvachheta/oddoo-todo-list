@@ -11,59 +11,7 @@ import RegisterPage from "./components/register/register";
 import Header from "./components/header/header";
 
 
-const board = {
-    columns: [
-        {
-            id: 1,
-            title: "To-Do",
-            backgroundColor: "#fff",
-            cards: [
-                {
-                    id: 1,
-                    title: "Card title 1",
-                    description: "Card content"
-                },
-                {
-                    id: 2,
-                    title: "Card title 2",
-                    description: "Card content"
-                },
-                {
-                    id: 3,
-                    title: "Card title 3",
-                    description: "Card content"
-                }
-            ]
-        },
-        {
-            id: 2,
-            title: "In Progress",
-            cards: [
-                {
-                    id: 9,
-                    title: "Card title 9",
-                    description: "Card content"
-                }
-            ]
-        },
-        {
-            id: 4,
-            title: "Done",
-            cards: [
-                {
-                    id: 12,
-                    title: "Card title 12",
-                    description: "Card content"
-                },
-                {
-                    id: 13,
-                    title: "Card title 13",
-                    description: "Card content"
-                }
-            ]
-        }
-    ]
-};
+
 
 
 
@@ -74,7 +22,32 @@ function App() {
     const [showSignUp, setShowSignUp] = useState(false);
     const [activeUsers, setActiveUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
-    const [assignees, setAssignees] = useState([])
+    const [assignees, setAssignees] = useState([]);
+    const [useBoard, setUseBoard] = useState(false)
+    const [board, setboard] = useState({
+        "columns": [
+            {
+                "id": 1,
+                "title": "To-Do",
+                "backgroundColor": "#fff",
+                "cards": [
+                    
+                ]
+            },
+            {
+                "id": 2,
+                "title": "In Progress",
+                "cards": [
+                 
+                ]
+            },
+            {
+                "id": 4,
+                "title": "Done",
+                "cards": []
+            }
+        ]
+    })
 
     console.log({ showTask });
 
@@ -146,10 +119,54 @@ function App() {
 
             const todosData = await response.json();
             console.log('Todos:', todosData);
+
+            setTimeout(() => {
+                setUseBoard(true)
+            }, 100);
+
+            setboard({
+                columns:[
+                    {
+                        id: 5,
+                        title: "To-Do",
+                        backgroundColor: "#fff",
+                        cards: todosData.filter(i=>i.status==='To-do').map(i=>({
+                            id: i._id,
+                            title: i.title,
+                            description: i.taskDescription,
+                            dueDate:i.dueDate,
+                            userName:i.createdBy.firstName
+                        }))
+                    },
+                    {
+                        id: 12,
+                        title: "In Progress",
+                        cards: todosData.filter(i=>i.status==='In Progress').map(i=>({
+                            id: i._id,
+                            title: i.title,
+                            description: i.taskDescription,
+                            dueDate:i.dueDate,
+                            
+                        }))
+                    },
+                    {
+                        id: 123,
+                        title: "Done",
+                        cards: todosData.filter(i=>i.status==='Done').map(i=>({
+                            id: i._id,
+                            title: i.title,
+                            description: i.taskDescription,
+                            dueDate:i.dueDate
+                        }))
+                    }
+                ]
+            })
         } catch (error) {
             console.error('Error:', error);
         }
     };
+
+    console.log({board});
 
 
     useEffect(() => {
@@ -197,8 +214,9 @@ function App() {
 
             }>
                 Create Todo +</div> 
-            <div className="board-root">
+           {useBoard&& <div className="board-root">
                 <Board
+                
                     on
                     renderCard={(data, { dragging }) => {
                         return (
@@ -210,11 +228,9 @@ function App() {
                                     }}
 
                                     title={data.title}
-                                    dueDate="28 OCT"
-                                    status="TBT-12"
-                                    tasksCompleted={1}
-                                    tasksTotal={2}
-                                    avatar="https://fastly.picsum.photos/id/504/200/300.jpg?hmac=mycti8qYrnGcag5zUhsVOq7hQwb__R-Zf--aBJAH_ec"
+                                    dueDate={data.dueDate}
+                                    status={`Assigned to: ${data.userName}`}
+                                    
                                 />
                                 {/* {content} */}
                                 {/* <button type="button" onClick={removeCard}>Remove Card</button> */}
@@ -236,7 +252,7 @@ function App() {
                     onCardNew={console.log}
                     onCardClick={console.log}
                 />
-            </div>
+            </div>}
             
 
             {showTask && <TaskForm assignees={assignees} taskDetails={taskDetails} closeModal={() => {
